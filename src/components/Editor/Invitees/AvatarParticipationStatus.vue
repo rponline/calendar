@@ -25,7 +25,10 @@
 		<Avatar
 			:disable-tooltip="true"
 			:user="avatarLink" />
-		<div class="avatar-participation-status__indicator" :class="className" />
+		<div class="avatar-participation-status__indicator" :class="className.class" />
+		<div class="avatar-participation-status__text">
+			{{ className.label }}
+		</div>
 	</div>
 </template>
 
@@ -132,27 +135,50 @@ export default {
 		},
 		className() {
 			if (this.participationStatus === 'ACCEPTED') {
-				return ['accepted', 'icon', 'icon-checkmark-white']
+				return {
+					class: ['accepted', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', 'Attending'),
+				}
 			}
 			if (this.participationStatus === 'DECLINED') {
-				return ['declined', 'icon', 'icon-close-white']
+				return {
+					class: ['declined', 'icon', 'icon-close-white'],
+					label: t('calendar', 'Not attending'),
+				}
 			}
 			if (this.participationStatus === 'TENTATIVE') {
-				return ['tentative', 'icon', 'icon-checkmark-white']
+				return {
+					class: ['tentative', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', 'Tentative'),
+				}
 			}
 			if (this.participationStatus === 'DELEGATED') {
-				return ['delegated', 'icon', 'icon-confirm-white']
+				return {
+					class: ['delegated', 'icon', 'icon-confirm-white'],
+					label: t('calendar', 'Delegated'),
+				}
 			}
 
-			return ['no-response', 'icon', 'icon-invitees-no-response-white']
+			return {
+				class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
+				label: t('calendar', 'No response'),
+			}
 		},
 	},
 }
 </script>
 <style lang="scss" scoped>
 ::v-deep .avatar-participation-status__indicator {
-	top: 30px;
+	bottom: 7px;
 	left: 45px;
 	opacity: .45;
+	position: relative;
+}
+.avatar-participation-status__text {
+	opacity: .45;
+	left: 67px;
+	bottom: 28px;
+	white-space: nowrap;
+	position: relative;
 }
 </style>
