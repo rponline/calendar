@@ -72,7 +72,7 @@ export default {
 	},
 	computed: {
 		className() {
-			
+
 			if (this.isResource && this.participationStatus === 'ACCEPTED') {
 				return {
 					class: ['accepted', 'icon', 'icon-checkmark-white'],
@@ -162,15 +162,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 ::v-deep .avatar-participation-status__indicator {
-	bottom: 7px;
-	left: 45px;
+	bottom: 14px;
+	left: 48px;
 	opacity: .45;
 	position: relative;
 }
 .avatar-participation-status__text {
 	opacity: .45;
-	left: 67px;
-	bottom: 28px;
+	left: 69px;
+	bottom: 35px;
 	white-space: nowrap;
 	position: relative;
 }
