@@ -162,8 +162,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 ::v-deep .avatar-participation-status__indicator {
-	bottom: 14px;
-	left: 48px;
+	bottom: 15px;
+	left: 47px;
 	opacity: .45;
 	position: relative;
 }
