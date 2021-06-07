@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-tooltip="tooltip" class="avatar-participation-status">
+	<div class="avatar-participation-status">
 		<Avatar
 			:disable-tooltip="true"
 			:user="avatarLink" />
@@ -71,44 +71,59 @@ export default {
 		},
 	},
 	computed: {
-		tooltip() {
-			if (this.isViewedByOrganizer && this.attendeeIsOrganizer) {
-				return null
-			}
-
+		className() {
+			
 			if (this.isResource && this.participationStatus === 'ACCEPTED') {
-				return this.$t('calendar', '{name} is available.', {
+				return {
+					class: ['accepted', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', '{name} is available.', {
 					name: this.commonName,
 				})
+				}
 			}
 			if (this.isResource && this.participationStatus === 'DECLINED') {
-				return this.$t('calendar', '{name} is not available.', {
-					name: this.commonName,
-				})
+				return {
+					class: ['declined', 'icon', 'icon-close-white'],
+					label: t('calendar', '{name} is not available.', {
+						name: this.commonName,
+					})
+				}
 			}
 
 			if (this.participationStatus === 'ACCEPTED' && this.isViewedByOrganizer) {
-				return this.$t('calendar', '{name} accepted your invitation.', {
-					name: this.commonName,
-				})
+				return {
+					class: ['accepted', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', '{name} accepted your invitation.', {
+						name: this.commonName,
+					})
+				}
 			}
 			if (this.participationStatus === 'ACCEPTED' && !this.isViewedByOrganizer) {
-				return this.$t('calendar', '{name} accepted {organizerName}\'s invitation.', {
-					name: this.commonName,
-					organizerName: this.organizerDisplayName,
-				})
+				return {
+					class: ['accepted', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', '{name} accepted {organizerName}\'s invitation.', {
+						name: this.commonName,
+						organizerName: this.organizerDisplayName,
+					})
+				}
 			}
 
 			if (this.participationStatus === 'DECLINED' && this.isViewedByOrganizer) {
-				return this.$t('calendar', '{name} declined your invitation.', {
-					name: this.commonName,
-				})
+				return {
+					class: ['declined', 'icon', 'icon-close-white'],
+					label: t('calendar', '{name} declined your invitation.', {
+						name: this.commonName,
+					})
+				}
 			}
 			if (this.participationStatus === 'DECLINED' && !this.isViewedByOrganizer) {
-				return this.$t('calendar', '{name} declined {organizerName}\'s invitation.', {
-					name: this.commonName,
-					organizerName: this.organizerDisplayName,
-				})
+				return {
+					class: ['declined', 'icon', 'icon-close-white'],
+					label: t('calendar', '{name} declined {organizerName}\'s invitation.', {
+						name: this.commonName,
+						organizerName: this.organizerDisplayName,
+					})
+				}
 			}
 
 			if (this.participationStatus === 'DELEGATED') {
@@ -117,51 +132,29 @@ export default {
 				})
 			}
 			if (this.participationStatus === 'TENTATIVE') {
-				return this.$t('calendar', '{name} marked their participation as tentative.', {
-					name: this.commonName,
-				})
+				return {
+					class: ['tentative', 'icon', 'icon-checkmark-white'],
+					label: t('calendar', '{name} marked their participation as tentative.', {
+						name: this.commonName,
+					})
+				}
 			}
 
 			if (this.isViewedByOrganizer) {
-				return this.$t('calendar', '{name} did not respond to your invitation yet.', {
-					name: this.commonName,
-				})
+				return {
+					class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
+					label: t('calendar', '{name} did not respond to your invitation yet.', {
+						name: this.commonName,
+					})
+				}
 			} else {
-				return this.$t('calendar', '{name} did not respond to {organizerName}\'s invitation yet.', {
-					name: this.commonName,
-					organizerName: this.organizerDisplayName,
-				})
-			}
-		},
-		className() {
-			if (this.participationStatus === 'ACCEPTED') {
 				return {
-					class: ['accepted', 'icon', 'icon-checkmark-white'],
-					label: t('calendar', 'Attending'),
+					class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
+					label: t('calendar', '{name} did not respond to {organizerName}\'s invitation yet.', {
+						name: this.commonName,
+						organizerName: this.organizerDisplayName,
+					})
 				}
-			}
-			if (this.participationStatus === 'DECLINED') {
-				return {
-					class: ['declined', 'icon', 'icon-close-white'],
-					label: t('calendar', 'Not attending'),
-				}
-			}
-			if (this.participationStatus === 'TENTATIVE') {
-				return {
-					class: ['tentative', 'icon', 'icon-checkmark-white'],
-					label: t('calendar', 'Tentative'),
-				}
-			}
-			if (this.participationStatus === 'DELEGATED') {
-				return {
-					class: ['delegated', 'icon', 'icon-confirm-white'],
-					label: t('calendar', 'Delegated'),
-				}
-			}
-
-			return {
-				class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
-				label: t('calendar', 'No response'),
 			}
 		},
 	},
