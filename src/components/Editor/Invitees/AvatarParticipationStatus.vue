@@ -77,8 +77,8 @@ export default {
 				return {
 					class: ['accepted', 'icon', 'icon-checkmark-white'],
 					label: t('calendar', '{name} is available.', {
-					name: this.commonName,
-				})
+						name: this.commonName,
+					}),
 				}
 			}
 			if (this.isResource && this.participationStatus === 'DECLINED') {
@@ -86,7 +86,7 @@ export default {
 					class: ['declined', 'icon', 'icon-close-white'],
 					label: t('calendar', '{name} is not available.', {
 						name: this.commonName,
-					})
+					}),
 				}
 			}
 
@@ -95,7 +95,7 @@ export default {
 					class: ['accepted', 'icon', 'icon-checkmark-white'],
 					label: t('calendar', '{name} accepted your invitation.', {
 						name: this.commonName,
-					})
+					}),
 				}
 			}
 			if (this.participationStatus === 'ACCEPTED' && !this.isViewedByOrganizer) {
@@ -104,7 +104,7 @@ export default {
 					label: t('calendar', '{name} accepted {organizerName}\'s invitation.', {
 						name: this.commonName,
 						organizerName: this.organizerDisplayName,
-					})
+					}),
 				}
 			}
 
@@ -113,7 +113,7 @@ export default {
 					class: ['declined', 'icon', 'icon-close-white'],
 					label: t('calendar', '{name} declined your invitation.', {
 						name: this.commonName,
-					})
+					}),
 				}
 			}
 			if (this.participationStatus === 'DECLINED' && !this.isViewedByOrganizer) {
@@ -122,7 +122,7 @@ export default {
 					label: t('calendar', '{name} declined {organizerName}\'s invitation.', {
 						name: this.commonName,
 						organizerName: this.organizerDisplayName,
-					})
+					}),
 				}
 			}
 
@@ -136,7 +136,7 @@ export default {
 					class: ['tentative', 'icon', 'icon-checkmark-white'],
 					label: t('calendar', '{name} marked their participation as tentative.', {
 						name: this.commonName,
-					})
+					}),
 				}
 			}
 
@@ -145,7 +145,7 @@ export default {
 					class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
 					label: t('calendar', '{name} did not respond to your invitation yet.', {
 						name: this.commonName,
-					})
+					}),
 				}
 			} else {
 				return {
@@ -153,7 +153,7 @@ export default {
 					label: t('calendar', '{name} did not respond to {organizerName}\'s invitation yet.', {
 						name: this.commonName,
 						organizerName: this.organizerDisplayName,
-					})
+					}),
 				}
 			}
 		},
