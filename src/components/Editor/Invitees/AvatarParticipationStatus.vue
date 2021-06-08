@@ -143,7 +143,7 @@ export default {
 			if (this.isViewedByOrganizer) {
 				return {
 					class: ['no-response', 'icon', 'icon-invitees-no-response-white'],
-					label: t('calendar', '{name} did not respond to your invitation yet.', {
+					label: t('calendar', '{name} hasn\'t responded yet.', {
 						name: this.commonName,
 					}),
 				}
@@ -173,5 +173,8 @@ export default {
 	bottom: 35px;
 	white-space: nowrap;
 	position: relative;
+	min-width: 220px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 </style>
