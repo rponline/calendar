@@ -41,7 +41,12 @@
 							<th>&nbsp;</th>
 						</tr>
 						<tr v-for="item in items" :key="item.url">
-							<td>{{ item.name }}</td>
+							<td>
+								<div
+									class="color-dot"
+									:style="{ 'background-color': item.color }" />
+								{{ item.name }}
+							</td>
 							<td class="deletedAt">
 								<Moment class="timestamp" :timestamp="item.deletedAt" />
 							</td>
@@ -111,6 +116,7 @@ export default {
 				name: calendar.displayname,
 				url: calendar._url,
 				deletedAt: calendar._props['{http://nextcloud.com/ns}deleted-at'],
+				color: calendar.color,
 			}))
 			const formattedCalendarObjects = this.objects.map(vobject => {
 				let eventSummary = t('calendar', 'Untitled event')
@@ -127,6 +133,7 @@ export default {
 					name: `${eventSummary} (${vobject.calendar.displayName})`,
 					url: vobject.uri,
 					deletedAt: vobject.dav._props['{http://nextcloud.com/ns}deleted-at'],
+					color: vobject.calendar.color,
 				}
 			})
 
@@ -225,5 +232,14 @@ th {
 	text-align: center;
 	font-size: small;
 	margin-top: 16px;
+}
+.color-dot {
+	display: inline-block;
+	vertical-align: middle;
+	width: 14px;
+	height: 14px;
+	margin: 0 14px;
+	border: none;
+	border-radius: 50%;
 }
 </style>
